@@ -71,8 +71,6 @@ https://doi.org/10.1155/2024/3027199
 
 Python, pandas, scikit-learn, Keras/TensorFlow, NLTK-style Bengali preprocessing
 
-```
-
 ## About Me
 
 **Samrina Sarkar Sammi** — M2 Data Science & Network Intelligence student, Télécom SudParis
