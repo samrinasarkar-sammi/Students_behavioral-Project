@@ -1,50 +1,78 @@
-# Students_behavioral-Project
+# Multihead Text Mining from COVID-19 Feedback Using Machine Learning, Deep Learning, and Hybrid Deep Learning Approaches
 
-Project Overview
+Published research on Bengali text classification, analyzing the impact of COVID-19 on students' academic, mental, and social well-being using 8 classical ML algorithms, 3 deep learning architectures, and 2 hybrid DL models.
 
-This project presents a multi-head text mining framework for analyzing public feedback related to COVID-19 using both classical machine learning and deep learning approaches. The goal is to automatically extract meaningful insights from large-scale user-generated textual feedback by performing multiple prediction tasks simultaneously.
-The system is designed to handle multi-dimensional text analysis, including sentiment detection, thematic categorization, and feedback classification. Given the massive amount of COVID-19 related online discussions, this work demonstrates how NLP and AI techniques can be applied to understand public opinion and assist data-driven decision-making.
-Both traditional machine learning algorithms and deep learning architectures were implemented and compared to evaluate their effectiveness on real-world textual feedback data.
+**Published in:** *Journal of Sensors*, Wiley, Volume 2024, Article ID 3027199 (27 pages)
+**DOI:** [10.1155/2024/3027199](https://doi.org/10.1155/2024/3027199)
+**Authors:** Khadijatul Kobra, **Samrina Sarkar Sammi**, Naimur Rahman, Sharun Akter Khushbu, Mirajul Islam
+**Affiliation:** Department of Computer Science and Engineering, Daffodil International University, Dhaka, Bangladesh
+**License:** Open access, Creative Commons Attribution License
 
+---
 
-Objectives:-
+## Abstract
 
-1. To design a multi-head text classification framework for COVID-19 feedback analysis
-2. To preprocess and clean real-world textual data for NLP tasks
-3. To implement and compare classical machine learning models and deep learning architectures
-4. To evaluate model performance using standard metrics such as accuracy, precision, recall, and F1-score
-5. To analyze the strengths and limitations of different approaches in multi-task text mining
+This study examines the impact of the COVID-19 epidemic on students in Bangladesh through text classification using various machine learning (ML) algorithms and deep learning (DL) models. The pandemic led to emergency crisis protocols in the country, including self-quarantine and the closure of educational and governmental institutions, resulting in significant negative impacts on individuals' physical and mental health. To better understand the psychological effects of the epidemic, we collected survey data from 400 students across various divisions of Bangladesh using self-administered questionnaires. The study deployed eight ML algorithms and DL models, including LSTM, BiLSTM, and CNN, to classify the effects on students' academic, mental, and social lives, achieving accuracies of up to 98.75%.
 
+## Novelty
 
-The workflow of the project includes:
+To the best of our knowledge, this is the first study on multi-head text mining for Bengali COVID-19 impact-related data — classifying the same survey response across three distinct life-impact dimensions (academic, mental health, social) rather than a single sentiment label.
 
-1. Data Collection & Cleaning:- Removal of noise, stop words, and irrelevant symbols, Tokenization and normalization
-2. Feature Engineering:- TF-IDF vectorization for classical ML models, Word embeddings for deep learning models
-3. Model Implementation:- Machine Learning models (e.g., Logistic Regression, SVM, Random Forest, etc.), Deep Learning models (e.g., LSTM, CNN, or hybrid architectures)
-4. Multi-Head Architecture:- Simultaneous prediction of multiple output categories, Comparative performance evaluation
+## Dataset
 
+- **Collection:** Self-administered questionnaires (22 different question sets) completed in person by 400 Bangladeshi students aged 10+, across schools, colleges, and universities, using stratified sampling by educational level and gender
+- **Structure:** 3 free-text response columns (impact on academic life, mental health, social life) + 1 shared Positive/Negative sentiment label, annotated by multiple independent annotators with inter-annotator agreement measured via Cohen's kappa
+- **Language:** Bengali (Bangla)
+- **Size:** 400 rows, perfectly balanced (200 Positive / 200 Negative)
 
-Tools & Technologies:- Python, Scikit-learn, TensorFlow / Keras / PyTorch, Pandas, NumPy, Matplotlib / Seaborn
+## Methodology
 
-Results:-
+**Preprocessing:** Duplicate removal, short-text filtering, Bangla punctuation removal, manual Bengali stop-word removal, stemming, label encoding, tokenization (Keras Tokenizer), and sequence padding.
 
-1. Deep learning models capture contextual information more effectively
-2. Traditional ML models perform competitively on structured features
-3. Multi-head learning improves overall task efficiency
-Performance was evaluated using confusion matrices and classification metrics.
+**Models evaluated:**
+- **Classical ML (8):** Random Forest, Multinomial Naïve Bayes, Decision Tree, Logistic Regression, Linear SVM, K-Nearest Neighbor, Stochastic Gradient Descent, RBF SVM
+- **Deep Learning (3):** LSTM, BiLSTM, CNN
+- **Hybrid DL (2):** CNN-LSTM, CNN-BiLSTM
 
+**Evaluation:** 80/20 train/test split for ML; 80/20 train/validation/test split for DL, trained for 10 epochs, evaluated on Accuracy, Precision, Recall, and F1 score.
 
-Research Contribution:-
-1. Demonstrating multi-task learning in real-world pandemic-related text data
-2. Comparing classical and deep learning approaches in a unified framework
-3. Providing insights into scalable public feedback analysis systems
+## Key Results
 
+| Input Column | Best Classical ML | Best DL Model |
+|---|---|---|
+| Academic Life | SGD — 95.00% accuracy | BiLSTM — 92.50% accuracy |
+| Mental Health | KNN — 93.75% accuracy | LSTM — 98.75% accuracy |
+| Social Life | SGD / Multi-NB — 95.00% accuracy | BiLSTM / CNN / CNN-LSTM — 92.50% accuracy |
 
-Error Analysis
+Hybrid DL models (CNN-LSTM, CNN-BiLSTM) also produced strong, competitive scores across all three dimensions. Full precision/recall/F1 breakdowns, training curves, and loss function comparisons (MAE, MSE, RMSE, R², MSLE, RMSLE) are reported in the published paper.
 
-Although the models achieved strong performance, several consistent challenges were observed:-
-1. Mixed or ambiguous sentiment: Comments containing both positive and negative opinions were sometimes misclassified due to contextual complexity.
-2. Short responses: Very brief feedback lacked sufficient context for stable prediction.
-3. Domain-specific terminology: Medical and COVID-related terms occasionally reduced model generalization.
-4. Class imbalance: Minority categories showed lower recall in confusion matrix analysis.
-5. Future improvements include using transformer-based embeddings, handling class imbalance more effectively, and expanding the dataset.
+## Limitations (as discussed in the paper)
+
+- Manual, in-person data collection from a single population (Bangladeshi students) may introduce sampling bias
+- Sample size (400) is small relative to typical DL training requirements — reflected in some models (CNN, CNN-LSTM) showing negative R² scores, indicating a poor fit for those specific architectures on this dataset size
+- Findings are specific to the Bengali-speaking student population studied; the paper notes this methodology could be extended to other languages and populations
+
+## Follow-Up Work
+
+See my related project, [`covid19-bangla-text-mining-ml-dl`'s companion repo] — a follow-up study fine-tuning a pretrained transformer (BanglaBERT) on this same dataset, testing whether a modern transformer outperforms the classical ML/DL models used here.
+
+## Citation
+
+If referencing this work, please cite:
+
+```
+Kobra, K., Sarkar Sammi, S., Rahman, N., Khushbu, S. A., & Islam, M. (2024).
+Multihead Text Mining from COVID-19 Feedback Using Machine Learning, Deep Learning,
+and Hybrid Deep Learning Approaches. Journal of Sensors, 2024, Article ID 3027199.
+https://doi.org/10.1155/2024/3027199
+```
+
+## Tech Stack
+
+Python, pandas, scikit-learn, Keras/TensorFlow, NLTK-style Bengali preprocessing
+
+## About Me
+
+**Samrina Sarkar Sammi** — M2 Data Science & Network Intelligence student, Télécom SudParis
+
+[LinkedIn](https://www.linkedin.com/in/samrina-sarkar-sammi-a8b716424/) · [GitHub](https://github.com/samrinasarkar-sammi) · samrinasarkar@gmail.com
